@@ -11,7 +11,7 @@ import org.testng.annotations.BeforeTest;
 
 /**
  * @author Eliza Zych
- * Verfication chat on https://www.tidiochat.com/
+ * Verification chat on https://www.tidiochat.com/
  *
  */
 
@@ -61,4 +61,12 @@ class HomepageTest {
 		
 	}
 	
+	@Test
+	void closeChat() {
+		
+		preconditions();
+		driver.findElement(By.xpath(xpathClose)).click();
+		driver.close();
+		
+	}
 }
