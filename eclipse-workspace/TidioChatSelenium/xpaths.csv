@@ -1,0 +1,9 @@
+ButtonBody,.//*[@id='button-body']
+Chat,html/body/div/div/div/div[1]
+Close,html/body/div/div/div/div[1]/div[1]/button
+CloseButton,html/body/div/div/div/div[1]/div[1]/button[1]
+ThreePoints,html/body/div/div/div/div[1]/div[3]/div/button[4]
+PlayButton,html/body/div/div/div/div[1]/div[3]/div/button[1]
+BotMessages,.//*[@id='messages']/div/div
+BotInformation,.//*[@id='messages']/div/span
+TalkButton,html/body/div/div/div/div[1]/div[3]/div/div/ul/li/span

@@ -2,6 +2,8 @@ package test.sample;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,58 +17,49 @@ import org.testng.annotations.BeforeTest;
  *
  */
 
-class HomepageTest {
+class HomepageTest extends Conditions{
 
-	WebDriver driver = new FirefoxDriver();
-	WebElement element;
-	String webSite = "https://www.tidiochat.com/";
-	String iFrame =  "tidio-chat-iframe";
-	String xpathBody = ".//*[@id='button-body']";
-	String xpathChat = "html/body/div/div/div/div[1]";
-	String xpathClose = "html/body/div/div/div/div[1]/div[1]/button";
-	String xpathCloseButton = "html/body/div/div/div/div[1]/div[1]/button[1]";
-	
-	void preconditions() {
-		driver.get(webSite);
-		driver.switchTo().frame(iFrame);
-	}
+
+
 	
 	@Test
-	void openChat() {
+	void openChat() throws IOException {
 	
 		preconditions();
-		driver.findElement(By.xpath(xpathBody)).click();
+		driver.findElement(By.xpath(findXpath("ButtonBody"))).click();
 		driver.close();
 		
 	}
 
 	@Test
-	void checkCloseButton() {
+	void checkCloseButton() throws IOException {
 		
 		preconditions();
-		driver.findElement(By.xpath(xpathChat)).click();
-		boolean checkButton = driver.findElement(By.xpath(xpathClose)).isDisplayed();
+		driver.findElement(By.xpath(findXpath("Chat"))).click();
+		boolean checkButton = driver.findElement(By.xpath(findXpath("Close"))).isDisplayed();
 		driver.close();
 		System.out.println("Button is visible: " + checkButton);
 		
 	}
 	
 	@Test
-	void closeOpenedChat() {
+	void closeOpenedChat() throws IOException {
 		
 		preconditions();
-		driver.findElement(By.xpath(xpathBody)).click();
-		driver.findElement(By.xpath(xpathCloseButton)).click();
+		driver.findElement(By.xpath(findXpath("ButtonBody"))).click();
+		driver.findElement(By.xpath(findXpath("CloseButton"))).click();
 		driver.close();
 		
 	}
 	
 	@Test
-	void closeChat() {
+	void closeChat() throws IOException {
 		
 		preconditions();
-		driver.findElement(By.xpath(xpathClose)).click();
+		driver.findElement(By.xpath(findXpath("Close"))).click();
 		driver.close();
 		
 	}
+	
+	
 }
