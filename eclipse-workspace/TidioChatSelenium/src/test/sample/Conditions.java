@@ -22,12 +22,13 @@ public class Conditions {
 
 	
 	public 	void preconditions() {
+		driver.manage().window().maximize();
 		driver.get(webSite);
 		driver.switchTo().frame(iFrame);
 	}
 	
 	public String findXpath(String key) throws IOException {
-		List <ElementsCSV> elements = ElementsCSV.setElements();
+		List <ElementsCSV> elements = ElementsCSV.setElements("xpaths.csv");
 		String xpath=null;
 		for(ElementsCSV item : elements) {
 			if(item.getKey().compareTo(key)==0) {

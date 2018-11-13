@@ -32,10 +32,9 @@ public class ElementsCSV {
 		this.key = key;
 	}
 	
-	public static List <ElementsCSV> setElements() throws IOException{
+	public static List <ElementsCSV> setElements(String fileIn) throws IOException{
 		List <ElementsCSV> elementsCSV = new ArrayList<ElementsCSV>();
-		String fileIn = "xpaths.csv";
-		  String line = null;
+			  String line = null;
 		  FileReader fileReader = new FileReader(fileIn);
 		  BufferedReader bufferedReader = new BufferedReader(fileReader);
 
