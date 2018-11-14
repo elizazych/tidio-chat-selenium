@@ -19,24 +19,29 @@ public class Conditions {
 	public WebElement element;
 	public String webSite = "https://www.tidiochat.com/";
 	public String iFrame =  "tidio-chat-iframe";
-
+	public List <ElementsCSV> elementsCSV;
+	public List <ElementsCSV> getstrings;
 	
-	public 	void preconditions() {
+	
+	public 	void preconditions() throws IOException {
+		elementsCSV = ElementsCSV.setElements("xpaths.csv");
+		getstrings = ElementsCSV.setElements("getstring.csv");
 		driver.manage().window().maximize();
 		driver.get(webSite);
-		driver.switchTo().frame(iFrame);
+		
 	}
 	
-	public String findXpath(String key) throws IOException {
-		List <ElementsCSV> elements = ElementsCSV.setElements("xpaths.csv");
+	public static String findXpath(String key, List<ElementsCSV> elements) {
 		String xpath=null;
 		for(ElementsCSV item : elements) {
 			if(item.getKey().compareTo(key)==0) {
 				xpath = item.getXpath();
 			}
 		}
+		
 		return xpath;
 	}
+	
 	
 
 	

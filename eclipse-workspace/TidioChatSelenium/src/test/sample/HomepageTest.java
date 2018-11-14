@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -22,11 +23,12 @@ class HomepageTest extends Conditions{
 
 
 	
-	@Test
+	/*@Test
 	void openChat() throws IOException {
 	
 		preconditions();
-		driver.findElement(By.xpath(findXpath("ButtonBody"))).click();
+		driver.switchTo().frame(iFrame);
+		driver.findElement(By.xpath(findXpath("ButtonBody", elementsCSV))).click();
 		driver.close();
 		
 	}
@@ -35,8 +37,9 @@ class HomepageTest extends Conditions{
 	void checkCloseButton() throws IOException {
 		
 		preconditions();
-		driver.findElement(By.xpath(findXpath("Chat"))).click();
-		boolean checkButton = driver.findElement(By.xpath(findXpath("Close"))).isDisplayed();
+		driver.switchTo().frame(iFrame);
+		driver.findElement(By.xpath(findXpath("Chat", elementsCSV))).click();
+		boolean checkButton = driver.findElement(By.xpath(findXpath("Close", elementsCSV))).isDisplayed();
 		driver.close();
 		System.out.println("Button is visible: " + checkButton);
 		
@@ -46,8 +49,9 @@ class HomepageTest extends Conditions{
 	void closeOpenedChat() throws IOException {
 		
 		preconditions();
-		driver.findElement(By.xpath(findXpath("ButtonBody"))).click();
-		driver.findElement(By.xpath(findXpath("CloseButton"))).click();
+		driver.switchTo().frame(iFrame);
+		driver.findElement(By.xpath(findXpath("ButtonBody", elementsCSV))).click();
+		driver.findElement(By.xpath(findXpath("CloseButton", elementsCSV))).click();
 		driver.close();
 		
 	}
@@ -56,10 +60,37 @@ class HomepageTest extends Conditions{
 	void closeChat() throws IOException {
 		
 		preconditions();
-		driver.findElement(By.xpath(findXpath("Close"))).click();
+		driver.switchTo().frame(iFrame);
+		driver.findElement(By.xpath(findXpath("Close", elementsCSV))).click();
 		driver.close();
 		
 	}
 	
-	
+
+	@Test
+	void compareTidiusHome() throws IOException {
+		preconditions();
+		driver.switchTo().frame(iFrame);
+		element = driver.findElement(By.xpath(findXpath("TidiusHome", elementsCSV)));
+		boolean result = element.getText().contains(findXpath("TidiusHome", getstrings));
+		driver.close();
+		System.out.println("Text are the same: " + result);
+	}
+	*/
+	@Test
+	void talkOnChat() throws IOException {
+		preconditions();
+		driver.switchTo().frame(iFrame);
+		driver.findElement(By.xpath(findXpath("ButtonBody", elementsCSV))).click();
+		element = driver.findElement(By.xpath(findXpath("NewMessage", elementsCSV)));
+		element.sendKeys("Hi!");
+		element.sendKeys(Keys.ENTER);
+		element = driver.findElement(By.xpath(findXpath("EmailInput", elementsCSV)));
+		driver.findElement(By.xpath(findXpath("CheckButton", elementsCSV))).click();
+		element.sendKeys("hpjmgwzrabw5@10minut.xyz");
+		element.sendKeys(Keys.ENTER);
+		driver.findElement(By.xpath(findXpath("CloseButton", elementsCSV))).click();
+		driver.close();
+	}
+
 }

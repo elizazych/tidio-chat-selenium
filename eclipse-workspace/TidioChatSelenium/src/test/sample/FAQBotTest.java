@@ -3,6 +3,7 @@ package test.sample;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -17,42 +18,34 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 class FAQBotTest extends Conditions{
 
-	
+
 	@Test
 	void openByBlueButton() throws IOException {
 		preconditions();
-		driver.findElement(By.xpath(findXpath("ThreePoints"))).click();
-		driver.findElement(By.xpath(findXpath("PlayButton"))).click();
-		driver.findElement(By.xpath(findXpath("TalkButton"))).click();
-		boolean botMessage = driver.findElement(By.xpath(findXpath("BotMessages"))).isDisplayed();
-		boolean botInformation = driver.findElement(By.xpath(findXpath("BotInformation"))).isDisplayed();
+		driver.switchTo().frame(iFrame);
+		driver.findElement(By.xpath(findXpath("ThreePoints", elementsCSV))).click();
+		driver.findElement(By.xpath(findXpath("PlayButton", elementsCSV))).click();
+		driver.findElement(By.xpath(findXpath("TalkButton", elementsCSV))).click();
+		boolean botMessage = driver.findElement(By.xpath(findXpath("BotMessages", elementsCSV))).isDisplayed();
+		boolean botInformation = driver.findElement(By.xpath(findXpath("BotInformation", elementsCSV))).isDisplayed();
 		driver.close();
 		System.out.println("BotMessage: " + botMessage);
 		System.out.println("BotInfromation: " + botInformation);
 	}
 
-	@Test
-	void getTextFromBot() throws IOException {
-		preconditions();
-		driver.findElement(By.xpath(findXpath("ThreePoints"))).click();
-		driver.findElement(By.xpath(findXpath("PlayButton"))).click();
-		driver.findElement(By.xpath(findXpath("TalkButton"))).click();
-		element = driver.findElement(By.xpath(findXpath("BotMessages")));
-		String botMessages = element.getText();
-		System.out.println(botMessages);
-		
-	}
 	
 	@Test
 	void botInformation() throws IOException {
 		preconditions();
-		driver.findElement(By.xpath(findXpath("ThreePoints"))).click();
-		driver.findElement(By.xpath(findXpath("PlayButton"))).click();
-		driver.findElement(By.xpath(findXpath("TalkButton"))).click();
-		element = driver.findElement(By.xpath(findXpath("BotInformation")));
-		String botMessages = element.getText();
-		System.out.println(botMessages);
+		driver.switchTo().frame(iFrame);
+		driver.findElement(By.xpath(findXpath("ThreePoints", elementsCSV))).click();
+		driver.findElement(By.xpath(findXpath("PlayButton", elementsCSV))).click();
+		driver.findElement(By.xpath(findXpath("TalkButton", elementsCSV))).click();
+		element = driver.findElement(By.xpath(findXpath("BotInformation", elementsCSV)));
+		Boolean botMessages = element.getText().contains(findXpath("TidiusHome", getstrings));
+		driver.close();
+		System.out.println("Tidius Information are the same: " + botMessages);
 		
 	}
-	
+
 }
