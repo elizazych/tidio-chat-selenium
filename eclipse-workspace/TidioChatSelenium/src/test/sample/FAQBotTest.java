@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -21,31 +22,26 @@ class FAQBotTest extends Conditions{
 
 	@Test
 	void openByBlueButton() throws IOException {
-		preconditions();
+		
+		elementsCSV = ElementsCSV.setElements("xpaths.csv");
+		getstrings = ElementsCSV.setElements("getstring.csv");
+		driver.manage().window().maximize();
+		driver.get(webSite);
 		driver.switchTo().frame(iFrame);
+		element = driver.findElement(By.xpath(findXpath("TidiusHome", elementsCSV)));
+		boolean botMessages = element.getText().contains(findXpath("TidiusHome", getstrings));
 		driver.findElement(By.xpath(findXpath("ThreePoints", elementsCSV))).click();
 		driver.findElement(By.xpath(findXpath("PlayButton", elementsCSV))).click();
 		driver.findElement(By.xpath(findXpath("TalkButton", elementsCSV))).click();
 		boolean botMessage = driver.findElement(By.xpath(findXpath("BotMessages", elementsCSV))).isDisplayed();
-		boolean botInformation = driver.findElement(By.xpath(findXpath("BotInformation", elementsCSV))).isDisplayed();
+		driver.findElement(By.xpath(findXpath("CloseButton", elementsCSV))).click();
 		driver.close();
 		System.out.println("BotMessage: " + botMessage);
-		System.out.println("BotInfromation: " + botInformation);
-	}
-
-	
-	@Test
-	void botInformation() throws IOException {
-		preconditions();
-		driver.switchTo().frame(iFrame);
-		driver.findElement(By.xpath(findXpath("ThreePoints", elementsCSV))).click();
-		driver.findElement(By.xpath(findXpath("PlayButton", elementsCSV))).click();
-		driver.findElement(By.xpath(findXpath("TalkButton", elementsCSV))).click();
-		element = driver.findElement(By.xpath(findXpath("BotInformation", elementsCSV)));
-		Boolean botMessages = element.getText().contains(findXpath("TidiusHome", getstrings));
-		driver.close();
 		System.out.println("Tidius Information are the same: " + botMessages);
 		
 	}
+
+	
+
 
 }

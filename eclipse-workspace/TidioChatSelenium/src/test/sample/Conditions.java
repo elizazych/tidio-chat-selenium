@@ -23,13 +23,7 @@ public class Conditions {
 	public List <ElementsCSV> getstrings;
 	
 	
-	public 	void preconditions() throws IOException {
-		elementsCSV = ElementsCSV.setElements("xpaths.csv");
-		getstrings = ElementsCSV.setElements("getstring.csv");
-		driver.manage().window().maximize();
-		driver.get(webSite);
-		
-	}
+
 	
 	public static String findXpath(String key, List<ElementsCSV> elements) {
 		String xpath=null;
