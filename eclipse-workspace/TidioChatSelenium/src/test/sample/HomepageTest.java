@@ -34,7 +34,7 @@ class HomepageTest extends Conditions{
 		driver.findElement(By.xpath(findXpath("Close", elementsCSV))).click();
 		driver.findElement(By.xpath(findXpath("ButtonBody", elementsCSV))).click();
 		element = driver.findElement(By.xpath(findXpath("NewMessage", elementsCSV)));
-		element.sendKeys("Hi!");
+		element.sendKeys("Talk with F.A.Q. Bot");
 		element.sendKeys(Keys.ENTER);
 		element = driver.findElement(By.xpath(findXpath("EmailInput", elementsCSV)));
 		driver.findElement(By.xpath(findXpath("CheckButton", elementsCSV))).click();
